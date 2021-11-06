@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Canvas Demo1</title>
+	</head>
+	<body>
+		<canvas width="500" height="500" style="background: #eee">
+			your browser is no canvas
+		</canvas>
+
+		<script>
+			window.onload = () => {
+				const canvas = document.querySelector('canvas');
+				const context = canvas.getContext('2d');
+				let rotate = 0;
+
+				const draw = () => {
+					context.clearRect(0, 0, canvas.width, canvas.height);
+					context.fillStyle = 'lightgreen';
+					context.save();
+					context.translate(canvas.width / 2, canvas.height / 2);
+					context.rotate((rotate += Math.PI / 180));
+					context.beginPath();
+					context.arc(100, 100, 80, 0, 2 * Math.PI);
+					context.fill();
+					context.restore();
+					requestAnimationFrame(draw);
+				};
+
+				draw();
+			};
+		</script>
+	</body>
+</html>
